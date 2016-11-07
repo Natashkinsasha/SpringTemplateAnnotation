@@ -17,22 +17,7 @@ public class MockWaybillService implements WaybillService {
     private Long userID =0L;
     private Long waybillID =0L;
 
-    @PostConstruct
-    public void init(){
-        waybills = new HashMap<>();
-        User firstUser = new User();
-        firstUser.setId(++userID);
-        firstUser.setUsername("Ivan Ivanovich");
-        User secondUser = new User();
-        secondUser.setId(++userID);
-        secondUser.setUsername("Peta Petrov");
-        Waybill firstWaybill = new Waybill();
-        firstWaybill.setId(++waybillID);
-        firstWaybill.setStatus(WaybillStatus.CHECKING_COMPLETED);
-        firstWaybill.setCheckedBy(firstUser);
-        firstWaybill.setResponsiblePerson(secondUser);
-        waybills.put(firstWaybill.getId(), firstWaybill);
-    }
+
 
 
     @Override

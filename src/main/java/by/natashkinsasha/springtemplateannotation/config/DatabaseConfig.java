@@ -55,6 +55,7 @@ public class DatabaseConfig {
         ds.setTestOnBorrow(Boolean.valueOf(env.getRequiredProperty("db.testOnBorrow")));
         ds.setValidationQuery(env.getRequiredProperty("db.validationQuery"));
 
+
         return ds;
     }
 
