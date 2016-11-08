@@ -1,6 +1,8 @@
 package by.natashkinsasha.springtemplateannotation.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -20,7 +22,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setObjectMapper(new ObjectMapper());
+        converter.setObjectMapper(new ObjectMapper().registerModule(new Hibernate4Module()));
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         converters.add(converter);

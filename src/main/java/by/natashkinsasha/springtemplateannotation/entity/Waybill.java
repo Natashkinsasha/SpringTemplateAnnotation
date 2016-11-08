@@ -1,6 +1,7 @@
 package by.natashkinsasha.springtemplateannotation.entity;
 
 
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class Waybill {
     @Enumerated(EnumType.STRING)
     private WaybillStatus status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "responsible_person_id")
     private User responsiblePerson;
 
@@ -32,7 +33,7 @@ public class Waybill {
     @JoinColumn(name = "checked_by")
     private User checkedBy;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "registered_by")
     private User registeredBy;
 

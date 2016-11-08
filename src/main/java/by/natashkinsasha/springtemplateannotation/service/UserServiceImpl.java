@@ -2,15 +2,19 @@ package by.natashkinsasha.springtemplateannotation.service;
 
 
 import by.natashkinsasha.springtemplateannotation.entity.User;
-import by.natashkinsasha.springtemplateannotation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserRepository userRepository;
+    @Qualifier("hibernateUserRepository")
+    JpaRepository<User, Long> userRepository;
+
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
@@ -18,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByID(long id) {
-        return userRepository.getOne(id);
+        return userRepository.findOne(id);
     }
 
     @Override

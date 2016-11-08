@@ -1,25 +1,24 @@
 package by.natashkinsasha.springtemplateannotation.service;
 
 
-import by.natashkinsasha.springtemplateannotation.entity.User;
 import by.natashkinsasha.springtemplateannotation.entity.Waybill;
-import by.natashkinsasha.springtemplateannotation.entity.WaybillStatus;
-import by.natashkinsasha.springtemplateannotation.repository.WaybillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
 public class WaybillServiceImpl implements WaybillService {
     @Autowired
-    private WaybillRepository repository;
-
+    @Qualifier("hibernateWaybillRepository")
+    JpaRepository<Waybill, Long> repository;
 
     @Override
     public List<Waybill> getAll() {
-        return repository.findAll();
+        List<Waybill> all = repository.findAll();
+        return all;
     }
 
     @Override
